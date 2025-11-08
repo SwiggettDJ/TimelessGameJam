@@ -7,12 +7,12 @@ public class PlayerAnimationHandler : MonoBehaviour
     [SerializeField]private ParticleSystem sprintGroundParticles;
     [SerializeField]private ParticleSystem sprintAirParticles;
 
-    private PlayerNetwork player;
+    private PlayerMovement player;
     // Start is called before the first frame update
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
-        player = GetComponentInParent<PlayerNetwork>();
+        player = GetComponentInParent<PlayerMovement>();
 
         player.OnPlayerJump += AnimateJump;
         player.OnPlayerWalk += AnimateWalk;

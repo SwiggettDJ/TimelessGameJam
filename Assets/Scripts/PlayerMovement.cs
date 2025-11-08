@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerNetwork : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     private CharacterController playerController;
     private float moveSpeed;

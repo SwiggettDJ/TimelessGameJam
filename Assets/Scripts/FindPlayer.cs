@@ -10,8 +10,8 @@ public class FindPlayer : MonoBehaviour
     void Start()
     {
         cam = GetComponent<CinemachineFreeLook>();
-        cam.LookAt = FindObjectOfType<PlayerNetwork>().GetComponentInParent<Transform>();
-        cam.Follow = FindObjectOfType<PlayerNetwork>().GetComponentInParent<Transform>();
+        cam.LookAt = FindObjectOfType<PlayerMovement>().GetComponentInParent<Transform>();
+        cam.Follow = FindObjectOfType<PlayerMovement>().GetComponentInParent<Transform>();
     }
 
     // Update is called once per frame
