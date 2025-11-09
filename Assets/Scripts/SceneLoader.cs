@@ -6,21 +6,44 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public enum Scene
+    public static SceneLoader instance;
+    public static Action OnSceneLoadedCustom;
+    public enum SceneEnum
     {
         CharacterSelectScene,
         LobbyScene,
         TestScene
     }
-
-    private void Start()
+    
+    private void Awake()
     {
+        instance = this;
         Cursor.visible = false;
     }
+    
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
-    public static void Load(Scene sceneName)
+    public void Load(SceneEnum sceneName)
     {
         SceneManager.LoadScene(sceneName.ToString(), LoadSceneMode.Single);
         Cursor.visible = false;
+    }
+    
+    public void Reload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        Cursor.visible = false;
+    }
+    
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        OnSceneLoadedCustom?.Invoke();
     }
 }

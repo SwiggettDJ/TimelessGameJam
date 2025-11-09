@@ -11,9 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 moveDirection;
     private Vector3 cameraRelativeMovement;
     private float sprintFovDelta = 15f;
-    private float slowDownMoveSpeed;
+    /*private float slowDownMoveSpeed;
     private float groundFriction = 5f;
-    private float airFriction = 2f;
+    private float airFriction = 2f;*/
     private Vector2 horizontalVelocity;
 
     private float gravity = -40;
@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private Camera mainCamera;
     
     public event Action OnPlayerJump;
-    public event Action<bool> OnPlayerWalk;
+    public static event Action<bool> OnPlayerWalk;
     public event Action<bool> OnPlayerSprint;
     public event Action<bool> OnPlayerFall;
 
@@ -59,26 +59,18 @@ public class PlayerMovement : MonoBehaviour
                 OnPlayerWalk?.Invoke(true);
             }
 
-            slowDownMoveSpeed = moveSpeed;
+            //slowDownMoveSpeed = moveSpeed;
             
             cameraRelativeMovement = ConvertToCameraSpace(moveDirection);
             cameraRelativeMovement.x *= moveSpeed;
             cameraRelativeMovement.z *= moveSpeed;
-            playerController.Move(cameraRelativeMovement * Time.deltaTime);
+            playerController.Move(cameraRelativeMovement * Time.unscaledDeltaTime);
         }
         else
         {
             OnPlayerWalk?.Invoke(false);
             Sprint(false);
-            
-            if (playerController.isGrounded)
-            {
-                MoveWithFriction(groundFriction); 
-            }
-            else
-            {
-                MoveWithFriction(airFriction);
-            }
+            playerController.Move(moveDirection * Time.unscaledDeltaTime);
         }
         
     }
@@ -101,7 +93,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 Quaternion targetRotation = Quaternion.LookRotation(lookDirection);
                 //Slerp between our old ratation and the target at a given speed
-                transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, Time.deltaTime * 10f);
+                transform.rotation = Quaternion.Slerp(currentRotation, targetRotation, Time.unscaledDeltaTime * 10f);
             }
         }
     }
@@ -159,17 +151,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void MoveWithFriction(float friction)
+    /*private void MoveWithFriction(float friction)
     {
         if (slowDownMoveSpeed <= 0.05f) slowDownMoveSpeed = 0;
         
         Vector3 slowDownDirection = new Vector3(transform.forward.x, moveDirection.y, transform.forward.z);
         slowDownDirection.x *= slowDownMoveSpeed;
         slowDownDirection.z *= slowDownMoveSpeed;
-        playerController.Move(slowDownDirection * Time.deltaTime);
+        playerController.Move(slowDownDirection * Time.unscaledDeltaTime);
 
-        slowDownMoveSpeed = Mathf.Lerp(slowDownMoveSpeed, 0, Time.deltaTime * friction);
-    }
+        slowDownMoveSpeed = Mathf.Lerp(slowDownMoveSpeed, 0, Time.unscaledDeltaTime * friction);
+    }*/
 
     private void ApplyGravity()
     {

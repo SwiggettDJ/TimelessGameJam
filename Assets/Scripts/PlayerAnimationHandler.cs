@@ -15,7 +15,7 @@ public class PlayerAnimationHandler : MonoBehaviour
         player = GetComponentInParent<PlayerMovement>();
 
         player.OnPlayerJump += AnimateJump;
-        player.OnPlayerWalk += AnimateWalk;
+        //player.OnPlayerWalk += AnimateWalk;
         player.OnPlayerSprint += AnimateSprint;
         player.OnPlayerFall += AnimateFall;
         

@@ -21,7 +21,7 @@ public class FpsCounter : MonoBehaviour
     void Update()
     {
         frameCount++;
-        timer += Time.deltaTime;
+        timer += Time.unscaledDeltaTime;
         if (timer >= updateInterval)
         {
             textDisplay.text = frameCount/updateInterval + " FPS";
