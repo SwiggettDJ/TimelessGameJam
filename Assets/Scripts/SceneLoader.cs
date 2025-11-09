@@ -12,22 +12,31 @@ public class SceneLoader : MonoBehaviour
     {
         CharacterSelectScene,
         LobbyScene,
-        TestScene
+        TestScene,
+        EndScreen
     }
-    
+
+    private void Update()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+
     private void Awake()
     {
         instance = this;
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
     
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
+        TimeManager.OnAllUpgrades += WinGame;
     }
     void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        TimeManager.OnAllUpgrades -= WinGame;
     }
 
     public void Load(SceneEnum sceneName)
@@ -45,5 +54,10 @@ public class SceneLoader : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         OnSceneLoadedCustom?.Invoke();
+    }
+
+    private void WinGame()
+    {
+        Load(SceneEnum.EndScreen);
     }
 }

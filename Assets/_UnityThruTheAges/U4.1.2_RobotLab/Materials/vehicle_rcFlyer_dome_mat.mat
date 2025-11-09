@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d56722fd7cc841042bfafe48130cf5d8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -89,13 +89,12 @@ Material:
     - _XRMotionVectorsPass: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.07765367, g: 0.08224141, b: 0.108391576, a: 0.69411767}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.077653654, g: 0.08224138, b: 0.108391546, a: 0.035826664}
+    - _Color: {r: 0.077653624, g: 0.08224135, b: 0.108391516, a: 0.035826664}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectColor: {r: 0.58131486, g: 0.64478993, b: 0.9882353, a: 0.63529414}
     - _SpecColor: {r: 0.7121107, g: 0.9607843, b: 0.77168155, a: 1}
   m_BuildTextureStacks: []
-  m_AllowLocking: 1
 --- !u!114 &4240160389573772890
 MonoBehaviour:
   m_ObjectHideFlags: 11

@@ -14,11 +14,13 @@ public class TimeManager : MonoBehaviour
     private float maxLoopTime = 2f;
     public float currentLoopTime;
     private float timeIncreaseAmount = 2f;
+    private int upgradesToWin = 9;
     
     private List<Vector3> collectedTimePos = new List<Vector3>();
     
     public static event Action<List<Vector3>> OnDisableCollectedTime;
     public static event Action OnTimeUpgraded;
+    public static event Action OnAllUpgrades;
     
     void Awake()
     {
@@ -67,6 +69,10 @@ public class TimeManager : MonoBehaviour
         maxLoopTime += timeIncreaseAmount;
         currentLoopTime += timeIncreaseAmount;
         OnTimeUpgraded?.Invoke();
+        if (collectedTimePos.Count >= upgradesToWin)
+        {
+            OnAllUpgrades?.Invoke();
+        }
     }
 
     private void OnDestroy()
