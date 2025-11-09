@@ -1,11 +1,12 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimationHandler : MonoBehaviour
 {
     private Animator playerAnimator;
-    [SerializeField]private ParticleSystem sprintGroundParticles;
-    [SerializeField]private ParticleSystem sprintAirParticles;
+    /*[SerializeField]private ParticleSystem sprintGroundParticles;
+    [SerializeField]private ParticleSystem sprintAirParticles;*/
 
     private PlayerMovement player;
     // Start is called before the first frame update
@@ -13,16 +14,16 @@ public class PlayerAnimationHandler : MonoBehaviour
     {
         playerAnimator = GetComponent<Animator>();
         player = GetComponentInParent<PlayerMovement>();
-
-        player.OnPlayerJump += AnimateJump;
-        //player.OnPlayerWalk += AnimateWalk;
+        
+        PlayerMovement.OnPlayerWalk += AnimateWalk;
+        /*player.OnPlayerJump += AnimateJump;
         player.OnPlayerSprint += AnimateSprint;
-        player.OnPlayerFall += AnimateFall;
+        player.OnPlayerFall += AnimateFall;*/
         
     }
     
 
-    private void AnimateJump()
+    /*private void AnimateJump()
     {
         playerAnimator.SetTrigger("jump");
     }
@@ -41,15 +42,19 @@ public class PlayerAnimationHandler : MonoBehaviour
             sprintAirParticles.Stop();
         }
         playerAnimator.SetBool("isSprinting", isSprinting);
-    }
+    }*/
 
     private void AnimateWalk(bool isWalking)
     {
-        playerAnimator.SetBool("isWalking", isWalking);
+        playerAnimator.SetBool("IsMoving", isWalking);
     }
 
-    private void AnimateFall(bool isFalling)
+    /*private void AnimateFall(bool isFalling)
     {
         playerAnimator.SetBool("isFalling", isFalling);
+    }*/
+    private void OnDestroy()
+    {
+        PlayerMovement.OnPlayerWalk -= AnimateWalk;
     }
 }
