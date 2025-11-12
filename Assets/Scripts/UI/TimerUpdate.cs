@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class TimeSetUp : MonoBehaviour
+public class TimerUpdate : MonoBehaviour
 {
     private float time;
     private TextMeshProUGUI text;
