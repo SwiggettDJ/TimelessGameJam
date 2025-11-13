@@ -283,7 +283,6 @@ GameObject:
   m_Component:
   - component: {fileID: 81269911}
   - component: {fileID: 81269910}
-  - component: {fileID: 81269909}
   - component: {fileID: 81269912}
   - component: {fileID: 81269913}
   - component: {fileID: 81269914}
@@ -294,22 +293,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &81269909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81269908}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerIndex: -1
-  AutoEnableInputs: 1
-  XYAxis: {fileID: -6630396756345573001, guid: 02baf6317a68187429fa90ffb727ae71, type: 3}
-  ZAxis: {fileID: 0}
 --- !u!114 &81269910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,10 +334,10 @@ MonoBehaviour:
   m_LegacyBlendHint: 0
   m_YAxis:
     Value: 0.5
-    m_SpeedMode: 0
-    m_MaxSpeed: 2
-    m_AccelTime: 0.2
-    m_DecelTime: 0.1
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.001
+    m_AccelTime: 0
+    m_DecelTime: 0
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
@@ -375,10 +358,10 @@ MonoBehaviour:
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
     Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 300
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
+    m_SpeedMode: 1
+    m_MaxSpeed: 0.11
+    m_AccelTime: 0
+    m_DecelTime: 0
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -423,7 +406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 81269908}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3443495, y: 4.792, z: -20.129637}
+  m_LocalPosition: {x: -0.9686855, y: 4.792, z: -20.15869}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -455,7 +438,7 @@ MonoBehaviour:
   m_MinimumDistanceFromTarget: 0.1
   m_AvoidObstacles: 1
   m_DistanceLimit: 0
-  m_MinimumOcclusionTime: 0.1
+  m_MinimumOcclusionTime: 0
   m_CameraRadius: 0.1
   m_Strategy: 0
   m_MaximumEffort: 4
@@ -1938,8 +1921,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.123114794, y: 0.04451485, z: -0.005528098, w: 0.9913781}
-  m_LocalPosition: {x: -1.3443495, y: 4.792, z: -20.129637}
+  m_LocalRotation: {x: 0.1231745, y: 0.032060117, z: -0.003981401, w: 0.9918591}
+  m_LocalPosition: {x: -0.9686855, y: 4.792, z: -20.15869}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3778,7 +3761,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 500190933}
-  m_LocalRotation: {x: 0.10510948, y: 0.044607826, z: -0.0047196266, w: 0.9934485}
+  m_LocalRotation: {x: 0.105160475, y: 0.03212706, z: -0.0033991276, w: 0.9939304}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5001,7 +4984,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757416195}
-  m_LocalRotation: {x: 0.14112708, y: 0.04440694, z: -0.006336887, w: 0.98897475}
+  m_LocalRotation: {x: 0.14119554, y: 0.031982392, z: -0.0045638997, w: 0.98945445}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12625,7 +12608,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1214644763}
-  m_LocalRotation: {x: 0.12311479, y: 0.044514854, z: -0.0055280975, w: 0.9913782}
+  m_LocalRotation: {x: 0.12317451, y: 0.032060117, z: -0.0039814007, w: 0.9918591}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18980,7 +18963,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh40152
+  m_Name: pb_Mesh86480
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2
@@ -24910,7 +24893,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh40008
+  m_Name: pb_Mesh86326
   serializedVersion: 11
   m_SubMeshes:
   - serializedVersion: 2

@@ -43,7 +43,7 @@ Material:
     - _MinAlpha: 0.1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Thickness: 0.5
+    - _Thickness: 0.3
     m_Colors:
     - _Color: {r: 0.3279473, g: 4.634989, b: 1.8100497, a: 0}
   m_BuildTextureStacks: []

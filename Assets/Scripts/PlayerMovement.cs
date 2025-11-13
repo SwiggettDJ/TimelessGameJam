@@ -141,6 +141,14 @@ public class PlayerMovement : MonoBehaviour
             OnPlayerJump?.Invoke();
         }
     }
+    
+    private void OnRestartLoop(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            SceneLoader.instance.Reload();
+        }
+    }
 
     //Toggles Sprinting on and off when input is received
     private void OnSprint(InputValue value)

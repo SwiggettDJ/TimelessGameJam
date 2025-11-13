@@ -1,30 +1,39 @@
-using System.Collections;
-using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CinemachineFreeLook))]
-public class CameraInputHandler : MonoBehaviour
+//By implementing IInputAxisProvider Cinemachine will grab this script as the input provider for the camera
+public class CameraInputHandler : MonoBehaviour, AxisState.IInputAxisProvider
 {
     private CinemachineFreeLook freeCam;
-    // Start is called before the first frame update
+    private float cashedInputX;
+    private float cashedInputY;
+    private float sensitivity = 1;
+    
     void Awake()
     {
         freeCam = GetComponent<CinemachineFreeLook>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     private void OnLook(InputValue value)
     { 
         Vector2 input = value.Get<Vector2>();
-        print(input);
-        freeCam.m_XAxis.Value = input.x;
-        freeCam.m_YAxis.Value = input.y;
-        
+
+        cashedInputX = input.x;
+        cashedInputY = input.y;
+
+    }
+    
+    // This is what cinemachine calls to get the axis values
+    public float GetAxisValue(int axis)
+    {
+        switch (axis)
+        {
+            case 0: return cashedInputX * sensitivity;
+            case 1: return cashedInputY * sensitivity;
+        }
+
+        return 0;
     }
 }
