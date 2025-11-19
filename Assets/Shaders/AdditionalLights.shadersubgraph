@@ -3,7 +3,17 @@
     "m_Type": "UnityEditor.ShaderGraph.GraphData",
     "m_ObjectId": "38cc02c4a19d4c9f89d518013aeac651",
     "m_Properties": [],
-    "m_Keywords": [],
+    "m_Keywords": [
+        {
+            "m_Id": "4959e3b494524953ad8796fb988b4fbb"
+        },
+        {
+            "m_Id": "df63298d55864f05b46bbcee1d3dbfe3"
+        },
+        {
+            "m_Id": "da4ea136646c4a75bc5b91bd607b651c"
+        }
+    ],
     "m_Dropdowns": [],
     "m_CategoryData": [
         {
@@ -119,7 +129,17 @@
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "17e92e97de374d509f77916e3dc77c23",
     "m_Name": "",
-    "m_ChildObjectList": []
+    "m_ChildObjectList": [
+        {
+            "m_Id": "4959e3b494524953ad8796fb988b4fbb"
+        },
+        {
+            "m_Id": "df63298d55864f05b46bbcee1d3dbfe3"
+        },
+        {
+            "m_Id": "da4ea136646c4a75bc5b91bd607b651c"
+        }
+    ]
 }
 
 {
@@ -161,6 +181,31 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "4959e3b494524953ad8796fb988b4fbb",
+    "m_Guid": {
+        "m_GuidSerialized": "09eb39c9-e3da-478a-82a8-d8424753e8c6"
+    },
+    "m_Name": "AdditionalLights",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "AdditionalLights",
+    "m_DefaultReferenceName": "_ADDITIONALLIGHTS",
+    "m_OverrideReferenceName": "_ADDITIONAL_LIGHTS",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 1,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
     "m_ObjectId": "4d01b390275e44b381e706ee4b86525f",
@@ -195,10 +240,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 20.000022888183595,
-            "y": -57.00001525878906,
+            "x": 22.0,
+            "y": -57.0,
             "width": 269.0,
-            "height": 302.0000305175781
+            "height": 302.0
         }
     },
     "m_Slots": [
@@ -229,7 +274,7 @@
     "m_SourceType": 1,
     "m_FunctionName": "AddAdditionalLights",
     "m_FunctionSource": "d9fb6a527781de445b802a9407d2de17",
-    "m_FunctionBody": "Diffuse = 0;\r\nColor = float3(0,0,0);\r\n\r\n#ifndef SHADERGRAPH_PREVIEW\r\n\r\n    uint pixelLightCount = GetAdditionalLightsCount();\r\n\t\r\n\tLIGHT_LOOP_BEGIN(pixelLightCount)\r\n\t\t//get light color and direction\r\n\t\tlightIndex = GetPerObjectLightIndex(lightIndex);\r\n\t\tLight light = GetAdditionalPerObjectLight(lightIndex, WorldPosition);\r\n\t\t\r\n\t\t//calculate shadows\r\n\t\tlight.shadowAttenuation = AdditionalLightRealtimeShadow(lightIndex, WorldPosition, light.direction);\r\n\t\tfloat atten = light.distanceAttenuation * light.shadowAttenuation;\r\n\t\t\r\n\t\t//calculate diffuse and specular\r\n\t\tfloat NdotL = saturate(dot(WorldNormal, light.direction));\r\n\t\tfloat thisDiffuse = atten * NdotL;\r\n\t\t\r\n\t\t//accumulate light\r\n\t\tDiffuse += thisDiffuse;\r\n\t\tColor += light.color * thisDiffuse;\r\n\tLIGHT_LOOP_END\r\n\r\n#endif"
+    "m_FunctionBody": "Diffuse = 0;\r\nColor = float3(0,0,0);\r\n\r\n#ifndef SHADERGRAPH_PREVIEW\r\n\r\n      uint pixelLightCount = GetAdditionalLightsCount();\r\n\t\r\n\tLIGHT_LOOP_BEGIN(pixelLightCount)\r\n\t\t//get light color and direction\r\n\t\t//lightIndex = GetPerObjectLightIndex(lightIndex);\r\n\t\tLight light = GetAdditionalPerObjectLight(lightIndex, WorldPosition);\r\n\t\t\r\n\t\t//calculate shadows\r\n\t\t//light.shadowAttenuation = AdditionalLightRealtimeShadow(lightIndex, WorldPosition, light.direction);\r\n\t\t//float atten = light.distanceAttenuation * light.shadowAttenuation;\r\n\t\tfloat steppedAtten = step(0.3, light.distanceAttenuation);\r\n\t\t\r\n\t\t//calculate diffuse and specular\r\n\t\tfloat NdotL = saturate(dot(WorldNormal, light.direction));\r\n\t\tfloat thisDiffuse = steppedAtten * step(0.3, NdotL);\r\n\t\t\r\n\r\n\t\t\r\n\t\t//accumulate light\r\n\t\tDiffuse += thisDiffuse;\r\n\t\tColor += light.color * thisDiffuse;\r\n\tLIGHT_LOOP_END\r\n\r\n#endif"
 }
 
 {
@@ -267,10 +312,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -259.0,
-            "y": 0.0000019073486328125,
-            "width": 205.99996948242188,
-            "height": 130.99998474121095
+            "x": -362.0,
+            "y": -21.0,
+            "width": 206.0,
+            "height": 131.0
         }
     },
     "m_Slots": [
@@ -414,6 +459,56 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "da4ea136646c4a75bc5b91bd607b651c",
+    "m_Guid": {
+        "m_GuidSerialized": "9bd54f99-41d6-4088-a72c-e37a86e81a0c"
+    },
+    "m_Name": "ClusterLightLoop",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "ClusterLightLoop",
+    "m_DefaultReferenceName": "_CLUSTERLIGHTLOOP",
+    "m_OverrideReferenceName": "_CLUSTER_LIGHT_LOOP",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 1,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.ShaderKeyword",
+    "m_ObjectId": "df63298d55864f05b46bbcee1d3dbfe3",
+    "m_Guid": {
+        "m_GuidSerialized": "39438c8a-8cd2-4729-bae4-da30e4048e0f"
+    },
+    "m_Name": "AdditionalLightShadows",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "AdditionalLightShadows",
+    "m_DefaultReferenceName": "_ADDITIONALLIGHTSHADOWS",
+    "m_OverrideReferenceName": "_ADDITIONAL_LIGHT_SHADOWS",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_KeywordType": 0,
+    "m_KeywordDefinition": 1,
+    "m_KeywordScope": 1,
+    "m_KeywordStages": 63,
+    "m_Entries": [],
+    "m_Value": 1,
+    "m_IsEditable": true
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.NormalVectorNode",
     "m_ObjectId": "e4a4fcf4d11647ab9de49f1e77d80e0f",
@@ -425,9 +520,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -259.0,
-            "y": -131.0,
-            "width": 205.99996948242188,
+            "x": -362.0,
+            "y": -188.0,
+            "width": 206.0,
             "height": 131.0
         }
     },
